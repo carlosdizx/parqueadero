@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/carlosdizx/parqueadero/issues"
   },
-  "homepage": "https://github.com/carlosdizx/parqueadero#readme"
+  "homepage": "https://github.com/carlosdizx/parqueadero#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.1",
+    "mongoose": "^6.0.13",
+    "morgan": "^1.10.0",
+    "prettier": "^2.4.1"
+  }
 }
