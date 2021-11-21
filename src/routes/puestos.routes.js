@@ -18,17 +18,47 @@ puestosRouter
     res.json(puesto);
   });
 
-puestosRouter.route("/:id").get(async (req, res) => {
-  const puesto = await puestos.findById(req.params.id);
-  if (puesto) {
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "application/json");
-    res.json(puesto);
-  } else {
-    res.statusCode = 404;
-    res.setHeader("Content-Type", "application/json");
-    res.json("No existe");
-  }
-});
+puestosRouter
+  .route("/:id")
+  .get(async (req, res) => {
+    const puesto = await puestos.findById(req.params.id);
+    if (puesto) {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.json(puesto);
+    } else {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "application/json");
+      res.json(`No existe el puesto: ${req.params.id}`);
+    }
+  })
+  .put(async (req, res) => {
+    const puesto = await puestos.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
+    );
+    if (puesto) {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.json(puesto);
+    } else {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "application/json");
+      res.json(`No existe el puesto: ${req.params.id}`);
+    }
+  })
+  .delete(async (req, res) => {
+    const puesto = await puestos.findByIdAndRemove(req.params.id);
+    if (puesto) {
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "application/json");
+      res.json("Puesto eliminado");
+    } else {
+      res.statusCode = 404;
+      res.setHeader("Content-Type", "application/json");
+      res.json(`No existe el puesto: ${req.params.id}`);
+    }
+  });
 
 module.exports = puestosRouter;
