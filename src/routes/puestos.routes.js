@@ -18,4 +18,17 @@ puestosRouter
     res.json(puesto);
   });
 
+puestosRouter.route("/:id").get(async (req, res) => {
+  const puesto = await puestos.findById(req.params.id);
+  if (puesto) {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.json(puesto);
+  } else {
+    res.statusCode = 404;
+    res.setHeader("Content-Type", "application/json");
+    res.json("No existe");
+  }
+});
+
 module.exports = puestosRouter;
