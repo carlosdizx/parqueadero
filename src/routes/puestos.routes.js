@@ -1,9 +1,9 @@
 const express = require("express");
 const puestos = require("../models/puesto");
 
-const indexRouter = express.Router();
+const puestosRouter = express.Router();
 
-indexRouter.get("/", async (req, res) => {
+puestosRouter.get("/", async (req, res) => {
   const listado = await puestos.find();
   console.log(listado);
   res.statusCode = 200;
@@ -11,4 +11,4 @@ indexRouter.get("/", async (req, res) => {
   res.json(listado);
 });
 
-module.exports = indexRouter;
+module.exports = puestosRouter;
