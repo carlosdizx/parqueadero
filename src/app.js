@@ -1,5 +1,6 @@
 const express = require("express");
-const indexRouter = require("./routes/puestos.routes");
+const puestosRouter = require("./routes/puestos.routes");
+const registrosRouter = require("./routes/registros.routes");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
@@ -11,6 +12,7 @@ mongoose.connect(url, () => console.log("Conectado a MongoDB"));
 app.use(express.json());
 app.use(logger("dev"));
 
-app.use("/puestos", indexRouter);
+app.use("/puestos", puestosRouter);
+app.use("/registros", registrosRouter);
 
 module.exports = app;
